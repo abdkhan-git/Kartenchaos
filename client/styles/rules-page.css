@@ -1,0 +1,62 @@
+#rules-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    z-index: 2;
+}
+
+.rules-background {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    height: 650px;
+    justify-content: center;
+    align-items: center;
+    border: solid white;
+    border-radius: 20px;
+    background-color: #245324;
+    background-image: url(../images/classy-fabric.png);
+}
+
+#rules-page-exit {
+    display: block;
+    font-family: 'myFirstFont';
+    font-size: 60px;
+    color: black;
+    font-weight: 800;
+    text-decoration: none;
+    background: none;
+    transition: 0.4s;
+    border: none;
+    text-transform: uppercase;
+    max-width: fit-content;
+    cursor: pointer;
+    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+    border-radius: 15px;
+}
+
+.rules-header{
+    border-radius: 20px;
+    font-size: 80px;
+    font-family: my-first-font;
+    text-align: center;
+    margin-top: 10px;
+    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+}
+
+.rules {
+    font-size: 20px;
+    color: white;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.rules-background{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

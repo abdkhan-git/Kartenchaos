@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: column;
   width: 1000px;
-  height: fit-content;
+  height: 650px;
   justify-content: center;
   align-items: center;
   border: solid white;
@@ -37,7 +37,7 @@
   background-image: url(../images/classy-fabric.png);
 }
 
-.content-holder { 
+.content-holder {
   /* border: solid white; */
   width: 80%;
   height: 90%;
@@ -52,9 +52,9 @@
 }
 
 .general, .audio {
-  flex: 1; 
-  text-align: center; 
-  
+  flex: 1;
+  text-align: center;
+
 }
 
 .main-btn {
@@ -63,7 +63,6 @@
   height: 70%;
   font-size: 60px;
   font-family: my-first-font;
-  
   text-align: center;
   background-color: rgba(136, 136, 136, 0.26);
   box-shadow: inset 1px 1px 15px black;
@@ -73,7 +72,7 @@
 .hover-enabled:hover {
   cursor: pointer;
   background-color: var(--buttonhover);
- 
+
 }
 
 .clicked {
@@ -88,12 +87,12 @@
   margin-top: -20px;
 }
 
-.master-volume-option, .music-volume-option, .sfx-volume-option, .change-bg-option, .card-style-option{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.master-volume-option, .music-volume-option, .sfx-volume-option{
+  display: flex;
+  flex-direction: row;
   height: 120px;
   width: 100%;
-  justify-content: start;
+  justify-content: right;
   align-items: center;
   text-align: center;
 }
@@ -346,7 +345,7 @@
   color: #333;
 }
 
-.bg-options {
+.bg-options, .card-bg-settings {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -406,7 +405,7 @@ input[type='range']::-moz-range-thumb {
   box-shadow: inset -2px -2px 8px white, inset 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-.range-style .thumb-style {
+.range-style .thumb-style { 
   position: relative;
   top: -50%;
   width: 40px;
@@ -454,4 +453,22 @@ input[type='range']::-moz-range-thumb {
   box-shadow: -1px -1px 2px white, 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
+.slider-input{
+  font-family: 'myFirstFont';
+  font-size: 30px;
+  width: 3ch;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid white;
+  text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+  text-align: center;
+}
 
+.slider-input:focus{
+  outline:none;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

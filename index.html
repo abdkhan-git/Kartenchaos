@@ -14,15 +14,26 @@
     <link rel="stylesheet" href="./client/styles/backgrounds.css">
     <link rel="stylesheet" href="./client/styles/home-page.css">
     <link rel="stylesheet" href="./client/styles/settings-page.css">
+  
+
+    <link rel="stylesheet" href="./client/styles\rules-page.css">
 </head>
 
 <body>
   
+<!-- JAVASCRIPT-SCRIPT-LINKS -->
+<script src="./client/scripts\settings-page.js" defer></script>
+<script src="./client/scripts\rules-page.js" defer></script>
+
 
     <!-- BACKGROUND-MUSIC -->
     <!-- <audio id="music" controls autoplay hidden>
         <source src="music.mp3" type="audio/mp3">
     </audio> -->
+<!-- BACKGROUND-MUSIC -->
+<audio id="music" controls autoplay hidden>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
 
     <!-- BACKGROUND-IMAGE -->
     <div class="bg-0" id="bg"></div>
@@ -46,6 +57,40 @@
             <button id="settings">Settings <img alt="selection-icon" src="client/Images/ace-of-spades.png"></button>
         </div>
     </div>
+<!-- HOME-PAGE -->
+<div class="home-ui">
+    <div class="header">
+        <div class="home-pictures left">
+            <img src="cards/KD.svg" alt="" class="card1">
+        </div>
+        <h1 id="title-of-game">KARTENCHAOS</h1>
+        <div class="home-pictures right">
+            <img src="cards/QC.svg" alt="" class="card2">
+        </div>
+        <div class="logo"></div>
+    </div>
+    <div class="home-screen-buttons">
+        <button id="play-game">Play Game <img alt="selection-icon" src="Images\ace-of-spades.png"></button>
+        <button id="rules">Rules <img alt="selection-icon" src="Images\ace-of-spades.png"></button>
+        <button id="settings">Settings <img alt="selection-icon" src="Images\ace-of-spades.png"></button>
+
+
+    </div>
+</div>
+
+<!-- RULES-PAGE -->
+<div id="rules-page" class = "hidden">
+    <div class="rules-background">
+        <h1 class = "rules-header">Rules</h1>
+        <p class = "rules">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum ex in ratione rem. Deserunt dolorum ex exercitationem explicabo modi, molestias natus omnis quod quos ratione tempore, vitae? Illo, numquam perspiciatis.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam atque consequuntur cum doloremque ducimus est facilis harum illum impedit laboriosam nesciunt non obcaecati, odio pariatur ratione reiciendis repellat voluptas?
+
+        </p>
+        <button id = "rules-page-exit">Ok</button>
+    </div>
+</div>
+
 
     <!-- SETTINGS-PAGE -->
     <div id="settings-page" class="hidden">
@@ -73,12 +118,40 @@
                             </div>
                         </div>
                     </div>
+            <!-- GENERAL SETTINGS -->
+            <div id="General-Setting-Option">
+                <!-- MIDDLE PORTION OF General SETTINGS -->
+                <div class="middle-content">
+            
+                    <div class="bg-settings">
+                        <div class="change-bg">Background</div>
+                        <div class="bg-options">
+                            <div class="bg-option bg-0"></div>
+                            <div class="bg-option bg-1"></div>
+                        </div>
+                    </div>
+
+                    <div class ="card-bg-settings">
+                        <div class="card-style">
+                            Card Style
+                        </div>
+                        <div class="card-style-options">
+
+                        </div>
+                    </div>
+                </div>
 
                     <!-- BOTTOM PORTION OF AUDIO SETTINGS -->
                     <div class="bottom-content"> ` <div></div>
                         <!-- Right-Side -->
                         <div class="bottom-right-side">
                             <button class="reset-btn">RESET</button>
+                <!-- BOTTOM PORTION OF GENERAL SETTINGS -->
+                <div class="bottom-content">
+`                   <div></div>
+                    <!-- Right-Side -->
+                    <div class="bottom-right-side">
+                            <button class="reset-btn general-reset-btn">RESET</button>
                             <button class="save-btn">SAVE</button>
                             <div>
                             </div>
@@ -97,6 +170,18 @@
                             </div>
                             <input type="range" class="range-style">
                         </div>
+            <!-- AUDIO SETTINGS -->
+            <div id="Audio-Setting-Option" class="display-disabled">
+                <!-- MIDDLE PORTION OF AUDIO SETTINGS -->
+                <div class="middle-content">
+                    <div class="master-volume-option">
+                        <div class="master-volume">
+                            Master Volume
+                        </div>
+                        <input type="range" class="master-slider range-style">
+                        <input type="number" class ="master-input slider-input" value="50"></input>
+
+                    </div>
 
                         <div class="music-volume-option">
                             <div class="music-volume">
@@ -104,6 +189,14 @@
                             </div>
                             <input type="range" class="range-style">
                         </div>
+                    <div class="music-volume-option">
+                        <div class="music-volume">
+                            Music Volume
+                        </div>
+                        <input type="range" class="music-slider range-style">
+                        <input type="number" class ="sfx-input slider-input" value="50"></input>
+
+                    </div>
 
                         <div class="sfx-volume-option">
                             <div class="sfx-volume">
@@ -112,6 +205,15 @@
                             <input type="range" class="range-style">
                         </div>
                     </div>
+                    <div class="sfx-volume-option">
+                        <div class="sfx-volume">
+                            SFX Volume
+                        </div>
+                        <input type="range" class="sfx-slider range-style">
+                        <input type="number" class ="sfx-input slider-input" value="50"></input>
+
+                    </div>
+                </div>
 
                     <!-- BOTTOM PORTION OF AUDIO SETTINGS -->
                     <div class="bottom-content">
@@ -136,6 +238,9 @@
                         <!-- Right-Side -->
                         <div class="bottom-right-side">
                             <button class="reset-btn">RESET</button>
+                    <!-- Right-Side -->
+                    <div class="bottom-right-side">
+                            <button class="reset-btn audio-reset-btn">RESET</button>
                             <button class="save-btn">SAVE</button>
                             <div>
                             </div>
@@ -163,7 +268,7 @@
       <script src="socket.io/socket.io.js"></script>
       <script src="./client/client.js"></script>
       <script src="./client/Main-phase-script.js"></script>
-      <script src="./client/scripts/settings-page.js"></script>
+     
 </body>
 
 </html>
