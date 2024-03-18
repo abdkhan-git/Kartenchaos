@@ -6,21 +6,28 @@ const musicInput = document.querySelector('.music-input');
 const backgroundAudio = document.getElementById("music");
 const masterSlider = document.querySelector('.master-slider');
 const masterInput = document.querySelector('.master-input');
+const sfxAudio = document.querySelector('.voiceover');
+const sfxSlider = document.querySelector('.sfx-slider');
+const sfxInput = document.querySelector('.sfx-input'); 
 
 // Initial volume settings
 const defaultVolume = 0.05;
+const defaultSfxVolume = 1;
 backgroundAudio.volume = defaultVolume;
+sfxAudio.volume = defaultSfxVolume;
+
 
 // Note: Music Slider will act as a multiplier to the Master Volume.
 let musicMultiplier = 1;
-
+let sfxMultiplier = 1;
 
 // Event listeners
 masterSlider.addEventListener('input', updateVolume);
 masterInput.addEventListener('input', handleInputChange);
 musicSlider.addEventListener('input', updateVolume);
 musicInput.addEventListener('input', handleInputChange);
-
+sfxSlider.addEventListener('input', updateVolume);
+sfxInput.addEventListener('input', handleInputChange);
 
 // Function to update volume
 function updateVolume() {
@@ -28,11 +35,18 @@ function updateVolume() {
     musicMultiplier = musicSlider.value / 50;
     const adjustedVolume = (masterVolume / 10) * musicMultiplier;
 
+    sfxMultiplier = sfxSlider.value / 50;
+    const adjustedSfxVolume = (masterVolume / 10) * sfxMultiplier;
+
     backgroundAudio.volume = adjustedVolume;
+    sfxAudio.volume = adjustedSfxVolume;
 
     // Update input values
     masterInput.value = masterSlider.value;
     musicInput.value = musicSlider.value;
+    sfxInput.value = sfxSlider.value;
+
+
 
 }
 
@@ -43,8 +57,12 @@ function handleInputChange() {
     if (!isNaN(inputValue)) {
         if (this === masterInput) {
             masterSlider.value = inputValue;
-        } else if (this === musicInput) {
+        } 
+        else if (this === musicInput) {
             musicSlider.value = inputValue;
+        } 
+        else if (this === sfxInput) {
+            sfxSlider.value = inputValue;
         }
 
         updateVolume();
