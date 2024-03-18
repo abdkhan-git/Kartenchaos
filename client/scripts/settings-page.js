@@ -206,7 +206,7 @@ function bgUpload(event) {
     var reader = new FileReader();
     reader.onload = function(event) {
         let custombgs = localStorage.getItem("custombgs")
-        if(custombgs.includes(event.target.result)){
+        if(custombgs && custombgs.includes(event.target.result)){
             return;
         }
         custombgs += event.target.result + "\n";
@@ -298,5 +298,6 @@ function updateCustomBg(bg, index, event){
 function updateCardStyle(style) {
     document.querySelector("#p1handcontainer").classList = style
     document.querySelector("#dropl").classList = style
+    document.querySelector("#c1c").classList = style
     localStorage.setItem("cardstyle", style);
 }

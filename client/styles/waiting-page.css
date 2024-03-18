@@ -1,0 +1,133 @@
+.wait-container {
+    font-family: "my-first-font";
+    font-weight: 800;
+    text-decoration: none;
+    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+    background: none;
+    font-size: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    transform: translate(20%, 0);
+}
+
+.wait-container h1 {
+    transform: translate(-45%, 0);
+    position: relative;
+    display: flex;
+}
+
+.button-container button {
+    display: block;
+    font-family: 'myFirstFont';
+    font-size: 5em;
+    color: black;
+    border: none;
+    font-weight: 800;
+    text-decoration: none;
+    background: none;
+    transition: 0.4s;
+    text-transform: uppercase;
+    max-width: fit-content;
+    cursor: pointer;
+    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+    padding: 60px;
+}
+
+.button-container button:hover {
+    color: #333;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container img {
+    visibility: hidden;
+    width: 40px;
+    transform: rotate(-0.25turn);
+    width: 40px;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    border: solid black;
+    background-color: white;
+    border-radius: 10%;
+}
+
+.wait-phase button:hover img {
+    visibility: visible;
+    animation-name: slideleft;
+    animation-duration: 1.1s;
+    animation-iteration-count: infinite;
+}
+
+.wait-phase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.gangham-loading {
+    width:100%; height:400px;
+    background-image: url(https://estelle.github.io/10/files/sprite.png);
+    animation: gangham 4s steps(23,start) infinite, movearound 12s steps(69,end) infinite alternate 44ms;
+    animation-direction: normal, alternate;
+}
+
+@keyframes gangham {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -5175px 0;
+    }
+}
+
+@keyframes movearound {
+    0% {
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(1000px);
+    }
+}
+
+.loading-dots {
+    margin-left: 32px;
+    font-size: 115px;
+}
+
+.loading-dot {
+    opacity: 0;
+    animation: loading-dot 1.5s infinite;
+}
+
+.loading-dot:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.loading-dot:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.loading-dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes loading-dot {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

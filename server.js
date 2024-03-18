@@ -10,16 +10,14 @@ const rooms = {};
 let player1Played = false, player2Played = false;
 
 
+
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname)));
 
 // Serve static files from the 'client' directory
 app.use(express.static(path.join(__dirname, 'client')));
 
-// Health check endpoint
-app.get('/healthcheck', (req, res) => {
-    res.send('<h1>RPS App running...</h1>');
-});
+
 
 // Main route
 app.get('/', (req, res) => {
@@ -101,7 +99,7 @@ io.on('connection', (socket) => {
             if(player2Played){
                 player1Played = false;
                 player2Played = false;
-                io.to(data.roomID).emit("revealOpponentCard", rooms[data.roomID]);
+                io.to(data.roomID).emit("gotoVSContainer", rooms[data.roomID]);
             }
         } else {
             console.error(`Room ${data.roomID} does not exist.`);
@@ -127,7 +125,7 @@ io.on('connection', (socket) => {
             if(player1Played){
                 player1Played = false;
                 player2Played = false;
-                io.to(data.roomID).emit("revealOpponentCard", rooms[data.roomID]);
+                io.to(data.roomID).emit("gotoVSContainer", rooms[data.roomID]);
             }
         } else {
             console.error(`Room ${data.roomID} does not exist.`);
@@ -135,13 +133,13 @@ io.on('connection', (socket) => {
         console.log(rooms)
 
     });
-    socket.on("updateRoom", (data) => {
-        rooms[data.roomID] = data;
+    socket.on("updatePlayer1Hand", (data) => {
+        rooms[data.roomID].p1hand = data.p1hand;
+    })
+    socket.on("updatePlayer2Hand", (data) => {
+        rooms[data.roomID].p2hand = data.p2hand;
     })
 });
-
-
-
 server.listen(3000, () => {
     console.log('listening on *:3000');
 })

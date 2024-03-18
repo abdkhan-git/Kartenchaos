@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/client/styles/home-page.css">
     <link rel="stylesheet" href="client/styles/settings-page.css">
     <link rel="stylesheet" href="/client/styles/rules-page.css">
+    <link rel="stylesheet" href="/client/styles/clash.css">
+    <link rel="stylesheet" href="/client/styles/waiting-page.css">
     <style class="custom-bg-style" type="text/css"></style>
 </head>
 <body>
@@ -17,6 +19,7 @@
 <audio id="music" controls autoplay hidden loop>
     <source src="/Audio/Default.mp3" type="audio/mp3">
 </audio>
+<audio autoplay class="voiceover" id="voiceover" src="/Audio/click.mp3"></audio>
 <div class="bg-0" id="bg"></div>
 <div class="home-ui">
     <div class="header">
@@ -68,6 +71,8 @@
                             <div class="bg-option bg-stock bg-0" onclick="updateBg('bg-0')"></div>
                             <div class="bg-option bg-stock bg-1" onclick="updateBg('bg-1')"></div>
                             <div class="bg-option bg-stock bg-2" onclick="updateBg('bg-2')"></div>
+                            <div class="bg-option bg-stock bg-3" onclick="updateBg('bg-3')"></div>
+                            <div class="bg-option bg-stock bg-4" onclick="updateBg('bg-4')"></div>
                         </div>
                         <div class="bg-option bg-custom-upload-container hidden" onclick="document.querySelector('.bg-custom-select').click()">
                             <h1 class="upload">+</h1>
@@ -156,6 +161,7 @@
     </div>
     <div class="dropport" id=drop_port>
         <div class="default" id="dropl"></div>
+        <div id = timer>&nbsp;</div>
         <div class="default" id="dropr"></div>
     </div>
     <div id="p1handcontainer"class="default">
@@ -164,6 +170,8 @@
         <div class="card" draggable="true"></div>
         <div class="card" draggable="true"></div>
         <div class="card" draggable="true"></div>
+        
+
     </div>
 
 </div>
@@ -171,38 +179,77 @@
 <!-- Waiting Page/Phase -->
 <div class="wait-phase" style="display: none;">
     <div class="wait-container">
-        <h2>Waiting For Player</h2>
-        <img src="client/Images/joker.png" alt="Joker" class="joker-img">
+        <h1>Waiting For Player<span class="loading-dots">
+            <span class="loading-dot">.</span>
+            <span class="loading-dot">.</span>
+            <span class="loading-dot">.</span>
+        </span></h1>
     </div>
-    <div id="p1handcontainer">
-        <div class="card1 heightcheck" style="--i:-2" draggable="true"> <img class="card-inner" src="client/cards/6S.svg" alt='' id="6S"></div>
-        <div class="card2 heightcheck" style="--i:-1" draggable="true"><img class="card-inner" src="client/cards/3H.svg" alt='' id="3H"></div>
-        <div class="card1 heightcheck" style="--i:0" draggable="true"><img class="card-inner" src="client/cards/7D.svg" alt='' id="7D"></div>
-        <div class="card2 heightcheck" style="--i:1" draggable="true"><img class="card-inner" src="client/cards/6D.svg" alt='' id="6D"></div>
-        <div class="card1 heightcheck" style="--i:2" draggable="true"><img class="card-inner" src="client/cards/5D.svg" alt='' id="5D"></div>
+    <div class="gangham-loading">
     </div>
     <div class="button-container">
-        <button id="link-button" onclick="copyLinkToClipboard()">Copy Link to Clipboard <img alt="selection-icon" src="client/Images/ace-of-spades.png"></button>
-        <button id="join-button" onclick="joinGame()">Join Game <img alt="selection-icon" src="client/Images/ace-of-spades.png"></button>
+        <button id="link-button" onclick="copyLinkToClipboard()" onmouseover="playHoverSound()">Copy Link to Clipboard <img alt="selection-icon" src="client/Images/ace-of-spades.png"></button>
+        <button id="join-button" onclick="joinGame()" onmouseover="playHoverSound()">Join Game <img alt="selection-icon" src="client/Images/ace-of-spades.png"></button>
     </div>
     <div id="clipboard-notification" class="notification">Link Copied to Clipboard!</div>
 </div>
-<div class="vs-container hidden" style="
-    position: fixed;
-    height: 1000vh;
-    width: 1000vw;
-    background: black;
-">
-    <button onclick="nextRound()">Okay</button>
+
+<!-- CLASH 1v1 PAGE -->
+<div id="clash-page" style="display: none;">
+    <!-- health-bars -->
+    <div class="barcontainer" >
+            
+        <div class="bar1">
+            <progress value="100" max="100" id="p1-health-bar">Player 1 Health</progress>
+            
+            <div class="p1-damage-indicator-container"><h1 class="p1-damage-taken hidden">-10</h1></p></div>
+
+        </div>
+        
+        <div class="bar2">
+            <progress value="100" max="100" id="p2-health-bar">Player 2 Health</progress>
+        
+            <div class="p2-damage-indicator-container"><h1 class="p2-damage-taken hidden">-10</h1></p></div>
+        </div>
+    </div>
+    <div class = cardcontainer>
+    <div class = card1container id = "c1c" >
+        <div class = "TEST1" id = "con1">
+        <div class = "card1clash" id = "player1card" ></div>
+        <audio id = "breaksound" src = "Glass Break Sound.mp3"></audio>
+        </div>
+    </div>
+    <div class="vs-container">
+        <p class = "v" id = "V">V</p>
+        <p class="s">S</p>
+    </div>
+    <div class = card2container id = "c2c">
+        <div class = "TEST2" id = "con2">
+        <div class = "card2clash" id = "player2card"></div>
+        <audio id = "breaksound" src = "Glass Break Sound.mp3"></audio>
+    </div>
+    </div>
+</div>
+<button id="shatterButton">Shatter</button>
+<div class="p1-card">Player 1
+    <button class="p1-attack">ATTACK</button>
+</div>
+<div class="p2-card">Player 2
+    <button class="p2-attack">ATTACK</button>
+</div>
+</div>
 </div>
 
 <!-- JAVASCRIPT-SCRIPT-LINKS -->
 <script src="socket.io/socket.io.js"></script>
+<script src="/client/scripts/clash.js" defer></script>
 <script src="./client/client.js"></script>
 <script src="./client/Main-phase-script.js" defer></script>
 <script src="/client/scripts/settings-page.js" defer></script>
 <script src="/client/scripts/rules-page.js" defer></script>
 <script src="/client/scripts/onload.js" defer></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/delaunay.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenMax.min.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,417 @@
+
+#clash-page {
+  position: relative;
+}
+
+@font-face {
+  font-family: myFirstFont;
+  src: url("../Font.ttf");
+}
+
+.p1-pfp {
+  display: inline-block;
+  border-style: double;
+  border-color: blue;
+  border-width: 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: white;
+  margin: 80px 0px 0px 80px;
+}
+
+
+.p2-pfp {
+  display: inline-block;
+  border-style: double;
+  border-color:  rgb(255, 0, 0);
+  border-width: 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  float: right;
+  text-align: center;
+  background-color: white;
+  margin: 80px 80px 0px 0px;
+}
+
+.p1-pfp img, .p2-pfp img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.p1-pfp img {
+  transform: scaleX(-1);
+}
+
+.barcontainer{
+  display: flex;
+  height: 8vh;
+  align-items: center;
+  border-width: 10px;
+  justify-content: center;
+  gap: 10%;
+  margin-top: 7vh;
+}
+
+
+
+progress[value]::-webkit-progress-value {
+  /* background: var(--progress-color); */
+  background: linear-gradient(90deg, #8b0505 0px, rgb(246, 32, 16) 10px, rgb(202, 146, 56) 100px, rgb(208, 170, 22) 150px, rgb(182, 194, 24) 250px, rgb(89, 170, 7) 375px, rgb(59, 147, 9) 425px, rgb(47, 136, 5) 450px, rgb(32, 128, 11) 500px, rgb(6, 82, 24) 700px);
+  transition: background-color 1s ease;
+  transition: 1s ease;
+  border-radius: 10px;
+}
+
+progress::-webkit-progress-bar {
+  background: rgba(128, 128, 128, 0.352);
+  border: solid 5px black;
+  border-radius: 15px;
+}
+
+#p1-health-bar, #p2-health-bar {
+  width: 100%;
+  height: 100%;
+  /* border: solid black; */
+  border-radius: 10px;
+  
+}
+
+#p2-health-bar {
+  transform: scaleX(-1);
+}
+
+.bar1, .bar2 {
+  width: 80%;
+  height: 100%;
+  border-radius: 10px;
+  position: relative;
+}
+
+
+.p1-damage-indicator-container,
+.p2-damage-indicator-container {
+  display: flex;
+  position: absolute;
+  /* border: solid pink; */
+  width: auto;
+  height: 100%;
+  top: 10px;
+  align-items: center;
+}
+
+.p1-damage-indicator-container {
+  left: 100%;
+}
+
+
+.p1-damage-taken, .p2-damage-taken {
+  margin: 0;
+  color: #ff3333;
+  font-weight: bold;
+  font-size: 70px;
+  animation: colorTransparenter 0.7s linear forwards;
+}
+
+
+
+@keyframes colorTransparenter {
+  0% {
+    color: #ff3333;
+    text-shadow: 
+      -1.5px -1.5px 0 #000,  
+      1.5px -1.5px 0 #000,
+      -1.5px 1.5px 0 #000,
+      1.5px 1.5px 0 #000;
+  }
+  60% {
+    color: #ff3333b4;
+    text-shadow: 
+    -1.5px -1.5px 5px rgba(0, 0, 0, 0.5),  
+    1.5px -1.5px 5px rgba(0, 0, 0, 0.5),
+    -1.5px 1.5px 5px rgba(0, 0, 0, 0.5),
+    1.5px 1.5px 5px rgba(0, 0, 0, 0.5); /* Semi-transparent shadow */
+  }
+  100% {
+    color: #ff333300;
+    text-shadow: 
+      -1.5px -1.5px 5px rgba(0, 0, 0, 0),  
+      1.5px -1.5px 5px rgba(0, 0, 0, 0),
+      -1.5px 1.5px 5px rgba(0, 0, 0, 0),
+      1.5px 1.5px 5px rgba(0, 0, 0, 0); /* Fully transparent shadow */
+  }
+}
+
+@keyframes fallingDown {
+  0% {
+    top: 0; 
+  }
+  100% {
+    top: 80%; 
+  }
+}
+
+
+.cardcontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80vh; /* Optional: Set a height for the container */
+}
+
+#c1c{
+  height: 60vh;
+  width: 22.5vw;;
+  /* background-color: #ddc1c1; */
+  background-color: #56820372;
+  background-image: url('../Images/wood-pattern.png');
+  align-items: center;
+  margin-left: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 10px black !important;
+  /* box-shadow:
+  inset #000000 0 0 0 5px, 
+  inset hsl(0, 8%, 3%) 0 0 0 1px, 
+  inset #9c0101 0 0 0 8px, 
+  inset #550e00 0 0 0 9px, 
+  inset #0a0a0a 0 0 0 11px, 
+  inset #ff220a 0 0 0 12px, 
+  inset #730000 0 0 0 15px, 
+  inset #050505 0 0 0 18px; */
+  border-radius: 15px;
+  animation: shake 1.8s;
+  position: relative;
+  
+}
+
+#c2c{
+  height: 60vh;
+  width: 22.5vw;
+  /* background-color: #daf4fa; */
+  background-color: #56820372;
+  background-image: url('../Images/wood-pattern.png');
+  margin-right: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 10px black !important;
+  /* box-shadow:
+  inset #77c2ff 0 0 0 1px, 
+  inset #009688 0 0 0 5px, 
+  inset #059c8e 0 0 0 1px, 
+  inset #34ffeb 0 0 0 9px, 
+  inset #1fbdae 0 0 0 11px, 
+  inset #8ce9ff 0 0 0 11px, 
+  inset #48e4d6 0 0 0 12px, 
+  inset #80d8ee 0 0 0 18px; */
+  border-radius: 15px;
+  animation: shake 1.8s;
+  position: relative;
+}
+
+/* LAYER ON TOP OF ALL COMPONENETS (GIVES A SCREEN EFFECT) */
+.card1container::before, .card2container::before {
+  content: ''; /* Create a pseudo-element */
+  position: absolute; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: solid 7px black;
+  border-radius: 5px;
+  z-index: 9999;
+  background: linear-gradient(to bottom, #00000033 10%, rgba(255, 255, 255, 0.36) 50%, #00000036 90%);
+}
+
+.cardcontainer::before {
+  content: none; /* Prevent ::before pseudo-element from being generated for .cardcontainer */
+}
+
+
+/* CONTAINER THAT HOLDS THE VS ELEMENTS */
+.vs-container {
+  display: flex;
+  position: relative;
+  border: solid 3px black;
+  height: 250px;
+  width: 250px;
+  border-radius: 20px;
+  background-color: #56820372;
+  background-image: url('../Images/wood-pattern.png'); /* Wooden board texture */
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  overflow: visible; /* Allow content to overflow */
+  z-index: 1; /* Set z-index value lowest*/
+  animation: shake 1.8s;
+}
+
+/* STYLES THE V & S ELEMENTS */
+.v, .s {
+  font-size: 150px;
+  margin: 0px;
+  text-decoration: solid;
+  text-align: center;
+  font-family: myFirstFont;
+  src: url("Poker.ttf");
+  text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+    1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+  z-index: 2; /* Set z-index value to second highest */
+}
+
+/* LAYER ON TOP OF ALL COMPONENETS (GIVES A SCREEN EFFECT) */
+.vs-container::before {
+  content: ''; /* Create a pseudo-element */
+  position: absolute; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: solid 7px black;
+  border-radius: 15px;
+  z-index: 9999; /* Set z-index value highest */
+  background: linear-gradient(to bottom, #00000033 10%, rgba(255, 255, 255, 0.36) 50%, #00000036 90%);
+}
+
+
+/* V ELEMENT ANIMATION*/
+.v {
+  animation: shake 1s 3 alternate;
+  animation-fill-mode: forwards;
+  position: relative;
+    
+}
+
+/* V ELEMENT NEW POSITION + ANIMATION AFTER S FALLS */
+.new-position {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg); /* Center the element and set initial rotation */
+  animation: spin 0.1s 10;
+  transition: top 10s ease, left 10s ease; 
+}
+
+
+/* S ELEMENT ANIMATION*/
+.s {
+  animation: shake 1s 3 alternate, fall-down-rotate 5s 0.5s;
+  
+  animation-fill-mode: forwards; /* Makes sure the final state of the animation persists */
+}
+
+
+@keyframes spin {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg); /* Rotate while keeping it centered */
+  }
+}
+
+/* SHAKE ANIMATION  */
+@keyframes shake {
+  0% {
+    transform: translate(0, 0); /* Start position */
+  }
+  10% {
+    transform: translate(-10px, -10px); /* Move up and left */
+  }
+  20% {
+    transform: translate(10px, 10px); /* Move down and right */
+  }
+  30% {
+    transform: translate(-20px, -5px); /* Move up and left */
+  }
+  40% {
+    transform: translate(20px, 5px); /* Move down and right */
+  }
+  50% {
+    transform: translate(-15px, 20px); /* Move up and right */
+  }
+  60% {
+    transform: translate(15px, -20px); /* Move down and left */
+  }
+  70% {
+    transform: translate(25px, 10px); /* Move right */
+  }
+  80% {
+    transform: translate(-25px, -10px); /* Move left */
+  }
+  90% {
+    transform: translate(0, 0); /* Return to center */
+  }
+  100% {
+    transform: translate(0, 0); /* End position */
+  }
+}
+
+/* FALLING ANIMATION */
+@keyframes fall-down-rotate {
+  /* Start with no rotation, goes above the viewport */
+  20% {
+    transform: translateY(-40%) rotate(-20deg);
+  }
+  
+  /* Moves down and rotates */
+  40% {
+    transform: translateY(50%) rotate(-20deg);
+  }
+  
+  /* Continue moving down with increased rotation */
+  60% {
+    transform: translateY(80%) rotate(-45deg);
+  }
+  
+  /* Move down to the bottom of the viewport and continue rotation */
+  100% {
+    transform: translateY(100vh) rotate(-360deg);
+  }
+}
+
+
+
+
+@keyframes flip {
+  0% {
+    transform: perspective(400px) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(400px) rotateY(180deg);
+  }
+}
+
+
+canvas {
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+}
+
+.TEST1 {
+  position: absolute;
+  width: 240px;
+  height: 366px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.TEST2 {
+  position: absolute;
+  width: 240px;
+  height: 366px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}

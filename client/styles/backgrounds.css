@@ -45,9 +45,33 @@
     position: fixed;
 }
 
+.bg-4{
+    background-color: darkred !important;
+    background-image: url("../Images/classy-fabric.png");
+    background-repeat: repeat;
+    height: 1000vh;
+    width: 1000vw;
+    z-index: -1000;
+    position: fixed;
+    animation-name: bg-animate;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+
+
 .bg-3{
-    background: radial-gradient(circle at bottom left,transparent 25%,#1da2d8 25.5%, #1da2d8 36%, transparent 37%, transparent 100%),radial-gradient(circle at top right,transparent 34%,#1da2d8 34.5%, #1da2d8 45.5%, transparent 46%, transparent 100%);
-    background-size: 2em 2em;
-    background-color: #006993;
-    opacity: 1
+    background-color: #1488df !important;
+    background-image: url("../Images/classy-fabric.png");
+    background-repeat: repeat;
+    height: 1000vh;
+    width: 1000vw;
+    z-index: -1000;
+    position: fixed;
+    animation-name: bg-animate;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
 }

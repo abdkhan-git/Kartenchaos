@@ -57,11 +57,6 @@ function getRandominRange(min, max) {
     return parseInt(Math.random() * (max - min)) + min;
 }
 
-
-// let x = getRandominRange(25,35);
-// let x = 30;
-// let y= generateHand(x);
-
 function loadCards(hand) {
     for (let i = 0; i < hand.length; i++) {
         cards[i].classList.remove("hidden")
@@ -78,11 +73,12 @@ for (let i = 0; i < cards.length; i++) {
                 cards[i].draggable = false;
             } else {
                 sendCardChoice(currplayerhand[i]);
-                cards[i].children[0].style.borderRadius = '10px';
-                cards[i].children[0].style.width = "70%";
-                cards[i].children[0].style.height = "30vh";
-                cards[i].children[0].style.marginLeft = "10px";
-                dropleft.appendChild(cards[i].children[0]);
+                let cardDiv = document.createElement('div');
+                cardDiv.appendChild(cards[i].children[0])
+                console.log(" checking for id " + currplayerhand[i].id)
+                cardDiv.style.borderRadius = '10px';
+                cardDiv.style.width = "150px";
+                dropleft.appendChild(cardDiv);
                 cards[i].classList.add("hidden");
 
                 // Remove the dblclick event listener after the first double-click
@@ -99,4 +95,37 @@ function getCard(card, tag){
     request.open("GET", "/client/cards/" + card + ".svg", false);
     request.send(null);
     return request.responseText.replaceAll("height=\"3.5in\"", "").replaceAll("width=\"2.5in\"","").replaceAll("V" + suit, tag + "-V" + suit).replaceAll("S" + suit, tag + "-S" + suit);
+}
+
+let countdownTime = 10; // Initial countdown time
+let countdownInterval; // Variable to hold the interval
+
+// Function to start the countdown timer
+function startTimer() {
+  // Synchronize the start time
+  const startTime = new Date().getTime() + 12000; // Start time after 5 seconds
+
+  // Start the countdown interval
+  countdownInterval = setInterval(() => {
+    // Calculate the remaining time
+    const currentTime = new Date().getTime();
+    const remainingTime = Math.max(0, Math.floor((startTime - currentTime) / 1000));
+
+    // Update the countdown element with the remaining time
+    updateCountdown(remainingTime);
+
+    // If the countdown reaches 0, clear the interval
+    if (remainingTime === 0) {
+      clearInterval(countdownInterval);
+      document.getElementById('timer').textContent = "Time's up!";
+      goToClashPhase();
+    }
+  }, 1000);
+}
+
+
+
+// Function to update the countdown element with the given time
+function updateCountdown(time) {
+  document.getElementById('timer').textContent = time;
 }
