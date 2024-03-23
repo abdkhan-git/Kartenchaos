@@ -407,20 +407,3 @@ canvas {
 }
 
 
-body {
-  overflow: hidden;
-}
-
-
-.piece {
-  position: absolute;
-  background-color: rgb(251, 0, 0);
-  transition: all 0.5s ease-out;
-}
-
-
-.crack {
-  position: absolute;
-  background-color: white;
-  transition: all 0.5s ease;
-}

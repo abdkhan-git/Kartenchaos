@@ -48,14 +48,9 @@ function placeCard(i) {
     if (dropleft.children.length === 0) {
         sendCardChoice(playerhand[i]);
         let cardDiv = document.createElement('div');
-        cardDiv.classList.add('myCardClass');
         cardDiv.appendChild(cards[i].children[0])
         cardDiv.style.borderRadius = '10px';
-        cardDiv.style.width = "149.38px";
-        cardDiv.style.height = "209.38px";
-        cardDiv.style.display= 'flex'
-        cardDiv.style.justifyContent= 'center'
-        
+        cardDiv.style.width = "150px";
         dropleft.appendChild(cardDiv);
         cards[i].classList.add("hidden");
         currplayerhand.splice(currplayerhand.indexOf(playerhand[i]),1)
