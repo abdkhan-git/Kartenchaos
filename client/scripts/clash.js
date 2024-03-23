@@ -69,6 +69,10 @@ function loadPlayerHP(hp) {
   }
 }
 
+document.getElementById('shatterButton').addEventListener('click', function () {
+    shatter()
+});
+
 
 
 // Wait for the 'S' animation to finish, then add class to position 'V' element in the center
@@ -110,28 +114,29 @@ function displayDamageTaken(damageIndicatorContainer, damageTaken, hp, direction
 }
 
         const TWO_PI = Math.PI * 2.5;
-        const imageWidth = 240; // Assuming image width
-        const imageHeight = 366; // Assuming image height
-        const images = document.querySelectorAll('.TEST1');
-        console.log("images" + images);
+        const imageWidth = 149.38; // Assuming image width
+        const imageHeight = 209.38; // Assuming image height
+        
         var imageIndex = 0;
         var vertices = [];
         var indices = [];
         var fragments = [];
-        var container = document.getElementById('con1');
+
         document.getElementById('shatterButton').addEventListener('click', function () {
     let shatterSound = document.getElementById('breaksound');
     if (shatterSound) {
         shatterSound.currentTime = .5;
         shatterSound.play();
     } else {
+        console.error(document.querySelector(".myCardClass"))
         console.error("Audio element with ID 'breaksound' not found.");
     }
     shatter();
 });
 
         function shatter() {
-            var clickPosition = [randomRange(0, imageWidth), randomRange(0, imageHeight)];
+            
+            var clickPosition = [imageWidth/2, imageHeight/2];
             triangulate(clickPosition);
             shatterAnimation(clickPosition);
         }
@@ -201,17 +206,17 @@ function displayDamageTaken(damageIndicatorContainer, damageTaken, hp, direction
                 tl0.insert(tl1, delay);
 
                 fragments.push(fragment);
-                container.appendChild(fragment.canvas);
+                document.querySelector(".myCardClass").appendChild(fragment.canvas);
             }
 
-            container.removeChild(images[imageIndex]);
+            document.querySelector(".myCardClass").removeChild( document.querySelectorAll('.myCardClass svg')[imageIndex]);
             
         }
 
         function shatterCompleteHandler() {
             setTimeout(function () {
                 fragments.forEach(function (f) {
-                    container.removeChild(f.canvas);
+                    document.querySelector(".myCardClass").removeChild(f.canvas);
                 });
                 fragments.length = 0;
                 vertices.length = 0;
@@ -259,33 +264,253 @@ function displayDamageTaken(damageIndicatorContainer, damageTaken, hp, direction
                 };
             },
             computeCentroid: function () {
-                var x = (this.v0[0] + this.v1[0] + this.v2[0]) / 3;
-                var y = (this.v0[1] + this.v1[1] + this.v2[1]) / 3;
+                var x = (this.v0[0] + this.v1[0] + this.v2[0]);
+                var y = (this.v0[1] + this.v1[1] + this.v2[1]);
 
                 this.centroid = [x, y];
             },
             createCanvas: function () {
     this.canvas = document.createElement('canvas');
-    this.canvas.width = this.box.w;
-    this.canvas.height = this.box.h;
-    this.canvas.style.width = this.box.w + 'px';
-    this.canvas.style.height = this.box.h + 'px';
-    this.canvas.style.left = this.box.x + 'px'; // Set left to the original x coordinate
-    this.canvas.style.top = this.box.y + 'px'; // Set top to the original y coordinate
+    this.canvas.width = imageWidth
+    this.canvas.height = imageHeight;
+    this.canvas.style.width = imageWidth+ 'px';
+    this.canvas.style.height = imageHeight + 'px';
+    this.canvas.style.left = this.box.x + 15 + 'px'; // Set left to the original x coordinate
+    this.canvas.style.top = this.box.y + 30  + 'px'; // Set top to the original y coordinate
+    
     this.ctx = this.canvas.getContext('2d');
 },
+clip: function () {
+    this.ctx.translate(-this.box.x, -this.box.y);
+    this.ctx.beginPath();
+    this.ctx.moveTo(this.v0[0], this.v0[1]);
+    this.ctx.lineTo(this.v1[0], this.v1[1]);
+    this.ctx.lineTo(this.v2[0], this.v2[1]);
+    this.ctx.closePath();
+    this.ctx.clip();
+    var image = document.querySelector(".myCardClass svg"); // Corrected selector
 
-            clip: function () {
-                this.ctx.translate(-this.box.x, -this.box.y);
-                this.ctx.beginPath();
-                this.ctx.moveTo(this.v0[0], this.v0[1]);
-                this.ctx.lineTo(this.v1[0], this.v1[1]);
-                this.ctx.lineTo(this.v2[0], this.v2[1]);
-                this.ctx.closePath();
-                this.ctx.clip();
-                this.ctx.drawImage(images[imageIndex], 0, 0);
-            }
-        };
+    console.log(image)
+if (image instanceof SVGElement) { //check if an svg
+    // Convert SVG to data URL
+   
+    var svgString = new XMLSerializer().serializeToString(image); // get string 
     
+    var tempSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg"); //make a replica
+   
+   
+    console.log(svgString)
+    tempSvg.innerHTML = svgString;  // copy into tempSvg
+    cardStyleShatter(tempSvg,document.querySelector("#dropl").classList.value); //get the card style and change tempSvg svg contents to it
+    var modifiedSvgString = new XMLSerializer().serializeToString(tempSvg);
+    var blob = new Blob([modifiedSvgString], { type: 'image/svg+xml' }); 
+    var url = URL.createObjectURL(blob);                                    //conversion
+    var img = new Image();
+
+    img.onload = function () {
+        this.ctx.imageSmoothingEnabled = false;                 // !important, need help with drawn image being blurry current plan is to use pixel calculation
+        this.ctx.drawImage(img, 0, 0, imageWidth,imageHeight);
+    
+        URL.revokeObjectURL(url);
+    }.bind(this);
+   // console.log(url)
+    img.src = url;
+
+} else if (image instanceof HTMLImageElement || 
+           image instanceof HTMLCanvasElement || 
+           image instanceof HTMLVideoElement || 
+           image instanceof OffscreenCanvas || 
+           image instanceof ImageBitmap) {
+    // Draw other supported image types directly onto the canvas
+    console.log(img)
+        
+        this.ctx.drawImage(image, 0, 0,imageWidth, imageHeight); // part that actually shows the image
+        
+} else {
+    // Handle unsupported image types
+    
+    console.error("Unsupported image type:", typeof image);
+}
+
+
+}
+};
+
+/*
+    Manually change the svg contents to replicate cards.css
+    applied to image before it gets drawn in.
+*/
+function cardStyleShatter(tempSvg, style) {
+    var recEls = tempSvg.querySelectorAll('rect'); // Select all rect elements
+    var symbolEls = tempSvg.querySelectorAll('symbol'); // Select all symbol elements
+    
+    switch(style) {
+        case 'dark':
+            // Apply style to rect elements
+            recEls.forEach(function(rect) {
+                rect.setAttribute('fill', 'black');
+                rect.setAttribute('stroke', 'white');
+                rect.setAttribute('stroke-width', '2');
+            });
+
+            // Apply style to first symbol path
+            symbolEls[0].querySelector('path').setAttribute('fill', 'white');
+
+            // Apply style to second symbol path
+            symbolEls[1].querySelector('path').setAttribute('stroke', 'white');
+
+            // Apply border
+            tempSvg.style.border = '2px solid white';
+            break;
+        
+        case 'black-and-gold':
+            recEls.forEach(function(rect) {
+                rect.setAttribute('fill', 'black');
+                rect.setAttribute('stroke', 'goldenrod');
+                rect.setAttribute('stroke-width', '2');
+            });
+
+            symbolEls[0].querySelector('path').setAttribute('fill', 'goldenrod');
+            symbolEls[1].querySelector('path').setAttribute('stroke', 'goldenrod');
+
+            tempSvg.style.border = '2px solid goldenrod';
+            break;
+
+        case 'blue-and-pink':
+            recEls.forEach(function(rect) {
+                rect.setAttribute('fill', '#87cefa');
+                rect.setAttribute('stroke', '#FC819E');
+                rect.setAttribute('stroke-width', '2');
+            });
+
+            symbolEls[0].querySelector('path').setAttribute('fill', '#FC819E');
+            symbolEls[1].querySelector('path').setAttribute('stroke', '#FC819E');
+
+            tempSvg.style.border = '2px solid #FC819E';
+            break;
+
+        case 'blue-and-yellow':
+            recEls.forEach(function(rect) {
+                rect.setAttribute('fill', '#2A4759');
+                rect.setAttribute('stroke', '#F5B06E');
+                rect.setAttribute('stroke-width', '2');
+            });
+
+            symbolEls[0].querySelector('path').setAttribute('fill', '#F5B06E');
+            symbolEls[1].querySelector('path').setAttribute('stroke', '#F5B06E');
+
+            tempSvg.style.border = '2px solid #F5B06E';
+            break;
+
+        case 'purple':
+            recEls.forEach(function(rect) {
+                rect.setAttribute('fill', '#7469B6');
+                rect.setAttribute('stroke', '#E1AFD1');
+                rect.setAttribute('stroke-width', '2');
+            });
+
+            symbolEls[0].querySelector('path').setAttribute('fill', '#E1AFD1');
+            symbolEls[1].querySelector('path').setAttribute('stroke', '#E1AFD1');
+
+            tempSvg.style.border = '2px solid #E1AFD1';
+            break;
+
+        case 'joker':
+            recEls.forEach(function(rect) {
+                rect.setAttribute('fill', '#331B3F');
+                rect.setAttribute('stroke', '#09ff00');
+                rect.setAttribute('stroke-width', '2');
+            });
+
+            symbolEls[0].querySelector('path').setAttribute('fill', '#09ff00');
+            // Uncomment the line below if you want to set a custom d attribute for the first symbol path
+            // symbolEls[0].querySelector('path').setAttribute('d', 'path("your_custom_path_here")');
+
+            symbolEls[1].querySelector('path').setAttribute('stroke', '#09ff00');
+
+            tempSvg.style.border = '2px solid #09ff00';
+            break;
+
+        case 'flash':
+            recEls.forEach(function(rect) {
+                rect.setAttribute('fill', '#a51818');
+                rect.setAttribute('stroke', '#ffe659');
+                rect.setAttribute('stroke-width', '2');
+            });
+
+            symbolEls[0].querySelector('path').setAttribute('fill', '#ffe659');
+            // Uncomment the line below if you want to set a custom d attribute for the first symbol path
+            // symbolEls[0].querySelector('path').setAttribute('d', 'path("your_custom_path_here")');
+
+            symbolEls[1].querySelector('path').setAttribute('stroke', '#ffe659');
+
+            tempSvg.style.border = '2px solid #ffe659';
+            break;
+
+        case 'coffee':
+            recEls.forEach(function(rect) {
+                rect.setAttribute('fill', '#F2EDD7');
+                rect.setAttribute('stroke', '#755139');
+                rect.setAttribute('stroke-width', '2');
+            });
+
+            symbolEls[0].querySelector('path').setAttribute('fill', '#755139');
+            symbolEls[1].querySelector('path').setAttribute('stroke', '#755139');
+
+            tempSvg.style.border = '2px solid #755139';
+            break;
+
+        case 'green':
+            recEls.forEach(function(rect) {
+                rect.setAttribute('fill', '#283618');
+                rect.setAttribute('stroke', '#B7B7A4');
+                rect.setAttribute('stroke-width', '2');
+            });
+
+            symbolEls[0].querySelector('path').setAttribute('fill', '#B7B7A4');
+            symbolEls[1].querySelector('path').setAttribute('stroke', '#B7B7A4');
+
+            tempSvg.style.border = '2px solid #B7B7A4';
+            break;
+
+        case 'batman':
+            recEls.forEach(function(rect) {
+                rect.setAttribute('fill', '#242424');
+                rect.setAttribute('stroke', '#fdff00');
+                rect.setAttribute('stroke-width', '2');
+            });
+
+            symbolEls[0].querySelector('path').setAttribute('fill', '#fdff00');
+            // Uncomment the line below if you want to set a custom d attribute for the first symbol path
+            // symbolEls[0].querySelector('path').setAttribute('d', 'path("your_custom_path_here")');
+
+            symbolEls[1].querySelector('path').setAttribute('stroke', '#fdff00');
+
+            tempSvg.style.border = '2px solid #fdff00';
+            break;
+
+        case 'superman':
+            recEls.forEach(function(rect) {
+                rect.setAttribute('fill', '#ffe63a');
+                rect.setAttribute('stroke', '#f11712');
+                rect.setAttribute('stroke-width', '2');
+            });
+
+            symbolEls[0].querySelector('path').setAttribute('fill', '#f11712');
+            // Uncomment the line below if you want to set a custom d attribute for the first symbol path
+            // symbolEls[0].querySelector('path').setAttribute('d', 'path("your_custom_path_here")');
+
+            symbolEls[1].querySelector('path').setAttribute('stroke', '#f11712');
+
+            tempSvg.style.border = '2px solid #f11712';
+            break;
+        
+        default:
+            // Default case
+            break;
+    }
+}
+
+
 
 
