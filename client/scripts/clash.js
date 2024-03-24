@@ -71,25 +71,6 @@ function loadPlayerHP(hp) {
 
 
 
-// Wait for the 'S' animation to finish, then add class to position 'V' element in the center
-document.addEventListener('DOMContentLoaded', function() {
-    var vElement = document.querySelector('.v');
-
-    // Function to be executed after animation finishes
-    function afterAnimation() {
-        setTimeout(function() {
-            vElement.classList.add('new-position');
-        }, 1500);
-    }
-
-    // Detect animation end for various browsers
-    vElement.addEventListener('animationend', afterAnimation);
-    vElement.addEventListener('webkitAnimationEnd', afterAnimation);
-    vElement.addEventListener('oanimationend', afterAnimation);
-    vElement.addEventListener('MSAnimationEnd', afterAnimation);
-});
-
-
 
 function displayDamageTaken(damageIndicatorContainer, damageTaken, hp, direction, damage) {
     damageIndicatorContainer.style.animation = 'none';
@@ -198,6 +179,7 @@ function shatterAnimation(clickPosition,side) {
         document.querySelector("#dropl").appendChild(fragment.canvas);
         }
         else{
+            console.log("chose dropright appendcanv")
             document.querySelector("#dropr").appendChild(fragment.canvas);
         }
     }
@@ -205,7 +187,8 @@ function shatterAnimation(clickPosition,side) {
     document.querySelector("#dropl").removeChild(document.querySelector('.myCardClass'));
 }
 else{
-    document.querySelector("#dropr").removeChild(fragment.canvas);
+    console.log("chose dropright rem0ve")
+    document.querySelector("#dropr").removeChild(document.querySelector('.card4'));
 }
 }
 
@@ -223,7 +206,7 @@ function sign(x) {
     return x < 0 ? -1 : 1;
 }
 
-function Fragment(v0, v1, v2) {
+function Fragment(v0, v1, v2,side) {
     this.v0 = v0;
     this.v1 = v1;
     this.v2 = v2;
@@ -231,7 +214,7 @@ function Fragment(v0, v1, v2) {
     this.computeBoundingBox();
     this.computeCentroid();
     this.createCanvas();
-    this.clip();
+    this.clip(side);
 }
 
 Fragment.prototype = {
@@ -265,7 +248,7 @@ Fragment.prototype = {
 
         this.ctx = this.canvas.getContext('2d');
     },
-    clip: function () {
+    clip: function (side) {
         this.ctx.translate(-this.box.x, -this.box.y);
         this.ctx.beginPath();
         this.ctx.moveTo(this.v0[0], this.v0[1]);
@@ -273,7 +256,13 @@ Fragment.prototype = {
         this.ctx.lineTo(this.v2[0], this.v2[1]);
         this.ctx.closePath();
         this.ctx.clip();
-        var image = document.querySelector("#dropl svg"); // Corrected selector
+        if (side == "left") {
+            var image = document.querySelector("#dropl svg"); // Corrected selector
+        }
+        else {
+            console.log("chose dropright svg")
+            var image = document.querySelector("#dropr svg");
+        }
 
     
         if (image instanceof SVGElement) { //check if an svg

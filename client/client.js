@@ -201,7 +201,7 @@ function nextRound(){
     document.querySelector("#p2handcontainer").style.transform = "scale(1) translateY(0px)";
     document.querySelector(".bar1").style.transform = "scale(1) translate(0%, 0%)";
     document.querySelector(".bar2").style.transform = "scale(1) translate(0%, 0%)";
-    document.querySelector("#dropr div").classList.remove("card4")
+    
     dropleft.innerHTML = ""
     dropright.innerHTML = ""
     resetCardI()
@@ -239,9 +239,10 @@ function goToClashPhase() {
             setTimeout(function () {
                 calculateHigher(p2card, p1card)
             }, 1000)
+
         }
     },500)
-    setTimeout( 3000)
+    setTimeout(nextRound, 6000)
   }
 
 function calculateHigher(card1, card2){
@@ -249,11 +250,28 @@ function calculateHigher(card1, card2){
     card2 =  parseInt((card2).replace((card2).at(-1), ""));
     if(card1 > card2) {
         damageP2((card1 + card2)/2)
+        setTimeout(function() {
+        document.getElementById("V").classList.add("vleft")
+        shatter("right")
+    },  1000); 
     }
-    else if(card2 > card1){
+    else if(card1 < card2){
         damageP1((card2 + card1)/2)
+        setTimeout(function() {
+        document.getElementById("V").classList.add("vright")
+        shatter("left")
+    }, 1000); 
     }
+    else {
+        document.getElementById("V").classList.add("new-position")
+       
+        setTimeout(function() {
+        document.getElementById("V").textContent = "draw"
+        document.getElementById("V").style.fontStretch = "expanded"
+    }, 600);
 }
+}
+
 socket.on("errorDialogue", (data) => {
     document.querySelector("#error").classList.remove("hidden")
     document.querySelector(".error-header").innerHTML = data.text;
