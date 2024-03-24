@@ -79,6 +79,7 @@ function goToMainPhase() {
     document.getElementsByClassName("home-ui")[0].style.display = "none";
     document.getElementsByClassName("wait-phase")[0].style.display = "none";
     document.querySelector("#Main-phase").style.display = "flex";
+    nextRound();
 }
 
 
@@ -192,13 +193,13 @@ socket.on('stopTimer', (data) => {
     stopTimer()
 })
 
-function nextRound(){
-    if(gameOver){
+function nextRound() {
+    if (gameOver) {
         return;
     }
     document.querySelector("#drop_port").style.transform = "scale(1)";
-    document.querySelector("#p1handcontainer").style.transform = "scale(1) translateY(0px)";
-    document.querySelector("#p2handcontainer").style.transform = "scale(1) translateY(0px)";
+    document.querySelector("#p1handcontainer").style = "transform: scale(1) translateY(0px); opacity: 1;";
+    document.querySelector("#p2handcontainer").style = "transform: scale(1) translateY(0px); opacity: 1";
     document.querySelector(".bar1").style.transform = "scale(1) translate(0%, 0%)";
     document.querySelector(".bar2").style.transform = "scale(1) translate(0%, 0%)";
     document.querySelector("#dropr div").classList.remove("card4")
@@ -223,8 +224,8 @@ function goToClashPhase() {
     document.getElementsByClassName("home-ui")[0].style.display = "none";
     document.getElementsByClassName("wait-phase")[0].style.display = "none";
     document.querySelector("#drop_port").style.transform = "scale(2)";
-    document.querySelector("#p1handcontainer").style.transform = "scale(2) translateY(250px)";
-    document.querySelector("#p2handcontainer").style.transform = "scale(2) translateY(-250px)";
+    document.querySelector("#p1handcontainer").style = "transform: scale(2) translateY(250px); opacity: 0;";
+    document.querySelector("#p2handcontainer").style = "transform: scale(2) translateY(-250px); opacity: 0;";
     document.querySelector(".bar1").style.transform = "scale(1.6) translate(20%, -30%)";
     document.querySelector(".bar2").style.transform = "scale(1.6) translate(-20%, 30%)";
     console.log("player1cards" + p1card, p2card)
@@ -249,11 +250,30 @@ function calculateHigher(card1, card2){
     card2 =  parseInt((card2).replace((card2).at(-1), ""));
     if(card1 > card2) {
         damageP2((card1 + card2)/2)
+        document.getElementById("V").classList.add("new-position")
+        setTimeout(function() {
+            document.getElementById("V").classList.add("vleft")
+            document.getElementById("V").classList.remove("new-position")
+        },  1000);
     }
     else if(card2 > card1){
         damageP1((card2 + card1)/2)
+        document.getElementById("V").classList.add("new-position")
+        setTimeout(function() {
+            document.getElementById("V").classList.add("vright")
+            document.getElementById("V").classList.remove("new-position")
+
+        }, 1000);
+    }
+    else {
+        document.getElementById("V").classList.add("new-position")
+        setTimeout(function() {
+            document.getElementById("V").textContent = "draw"
+            document.getElementById("V").style.fontStretch = "expanded"
+        }, 600);
     }
 }
+
 socket.on("errorDialogue", (data) => {
     document.querySelector("#error").classList.remove("hidden")
     document.querySelector(".error-header").innerHTML = data.text;

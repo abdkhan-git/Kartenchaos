@@ -320,7 +320,7 @@ html {
     align-items: center;
     gap: 15px;
     border: none !important;
-    transition: all 1s;
+    transition: transform 1s, opacity 2s;
     height: 210px;
 }
 

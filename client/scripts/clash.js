@@ -69,12 +69,6 @@ function loadPlayerHP(hp) {
     }
 }
 
-document.getElementById('shatterButton').addEventListener('click', function () {
-    shatter()
-});
-
-
-
 // Wait for the 'S' animation to finish, then add class to position 'V' element in the center
 document.addEventListener('DOMContentLoaded', function() {
     var vElement = document.querySelector('.v');

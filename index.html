@@ -192,7 +192,6 @@
     <div class="dropport" id=drop_port>
         <div class="default" id="dropl"></div>
         <div id = timer>&nbsp;</div>
-        <button id="shatterButton" class = "shat">Shatter</button>
         <div class="default" id="dropr"></div>
     </div>
     
@@ -209,6 +208,9 @@
         <div class="p1-damage-indicator-container"><h1 class="p1-damage-taken hidden">-10</h1></p></div>
 
     </div>
+    <div class = "main-phase-buttons">
+        <img src="/client/Images/settings.svg" class = "settings-main-phase">
+    </div>
     
 </div>
 
@@ -224,8 +226,8 @@
     <div class="gangham-loading">
     </div>
     <div class="button-container">
-        <button id="link-button" onclick="copyLinkToClipboard()" onmouseover="playHoverSound()">Copy Link to Clipboard <img alt="selection-icon" src="client/Images/ace-of-spades.png"></button>
-        <button id="join-button" onclick="joinGame()" onmouseover="playHoverSound()">Join Game <img alt="selection-icon" src="client/Images/ace-of-spades.png"></button>
+        <button id="link-button" onclick="copyLinkToClipboard()">Copy Link to Clipboard <img alt="selection-icon" src="client/Images/ace-of-spades.png"></button>
+        <button id="join-button" onclick="joinGame()">Join Game <img alt="selection-icon" src="client/Images/ace-of-spades.png"></button>
     </div>
     <div id="clipboard-notification" class="notification">Link Copied to Clipboard!</div>
 </div>

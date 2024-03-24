@@ -246,3 +246,7 @@ function updateCardStyle(style) {
     localStorage.setItem("cardstyle", style);
     updateCardStyleForAll(getRoomIDFromURL(), style)
 }
+
+document.querySelector(".settings-main-phase").addEventListener("click", ()=> {
+    settingsDiv.classList.remove("hidden")
+})
