@@ -165,6 +165,7 @@ socket.on('loadCardStyles', (data) => {
     else {
         displayStyle = data.p1cardstyle
     }
+    displayStyle = (displayStyle) ? displayStyle : "default"
     document.querySelector("#p2handcontainer").classList = displayStyle;
     document.querySelector("#dropr").classList = displayStyle;
 })
@@ -195,8 +196,6 @@ function nextRound(){
     if(gameOver){
         return;
     }
-  
-   
     document.querySelector("#drop_port").style.transform = "scale(1)";
     document.querySelector("#p1handcontainer").style.transform = "scale(1) translateY(0px)";
     document.querySelector("#p2handcontainer").style.transform = "scale(1) translateY(0px)";
@@ -242,7 +241,7 @@ function goToClashPhase() {
             }, 1000)
         }
     },500)
-    setTimeout(nextRound, 5000)
+    setTimeout(nextRound, 3000)
   }
 
 function calculateHigher(card1, card2){
@@ -250,15 +249,9 @@ function calculateHigher(card1, card2){
     card2 =  parseInt((card2).replace((card2).at(-1), ""));
     if(card1 > card2) {
         damageP2((card1 + card2)/2)
-        setTimeout(function() {
-        document.getElementById("V").classList.add("vleft")
-    },  1000); 
     }
     else if(card2 > card1){
         damageP1((card2 + card1)/2)
-        setTimeout(function() {
-        document.getElementById("V").classList.add("vright")
-    }, 1000); 
     }
 }
 socket.on("errorDialogue", (data) => {
@@ -267,3 +260,7 @@ socket.on("errorDialogue", (data) => {
     document.querySelector(".home-ui").style.display = "none"
     document.querySelector("#Main-phase").style.display = "none"
 })
+
+function updateCardStyleForAll(roomID, style){
+    socket.emit("updateCardStyleForAll", {roomID: roomID, style: style})
+}

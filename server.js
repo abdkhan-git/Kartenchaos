@@ -154,6 +154,16 @@ io.on('connection', (socket) => {
     socket.on("updatePlayer2Hand", (data) => {
         rooms[data.roomID].p2hand = data.p2hand;
     })
+    socket.on("updateCardStyleForAll", (data) => {
+        if(rooms[data.roomID]) {
+            if (socket.id === rooms[data.roomID].player1) {
+                rooms[data.roomID].p1cardstyle = data.style;
+            } else if (socket.id === rooms[data.roomID].player2) {
+                rooms[data.roomID].p2cardstyle = data.style;
+            }
+            io.to(data.roomID).emit('loadCardStyles', rooms[data.roomID]);
+        }
+    })
 });
 server.listen(3000, () => {
     console.log('listening on *:3000');
