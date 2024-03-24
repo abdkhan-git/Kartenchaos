@@ -69,10 +69,6 @@ function loadPlayerHP(hp) {
     }
 }
 
-document.getElementById('shatterButton').addEventListener('click', function () {
-    shatter()
-});
-
 
 
 // Wait for the 'S' animation to finish, then add class to position 'V' element in the center
@@ -114,31 +110,23 @@ function displayDamageTaken(damageIndicatorContainer, damageTaken, hp, direction
 }
 
 const TWO_PI = Math.PI * 2.5;
-const imageWidth = 149.38; // Assuming image width
-const imageHeight = 209.38; // Assuming image height
+const imageWidth = 150;
+ // Assuming image width
+const imageHeight = 210; // Assuming image height
 
 var imageIndex = 0;
 var vertices = [];
 var indices = [];
 var fragments = [];
 
-document.getElementById('shatterButton').addEventListener('click', function () {
-    let shatterSound = document.getElementById('breaksound');
-    if (shatterSound) {
-        shatterSound.currentTime = .5;
-        shatterSound.play();
-    } else {
-        console.error(document.querySelector(".myCardClass"))
-        console.error("Audio element with ID 'breaksound' not found.");
-    }
-    shatter();
-});
+function shatterCard(side) {
+    shatter(side);
+};
 
-function shatter() {
-
+function shatter(side) {
     var clickPosition = [imageWidth/2, imageHeight/2];
     triangulate(clickPosition);
-    shatterAnimation(clickPosition);
+    shatterAnimation(clickPosition,side);
 }
 
 function triangulate(clickPosition) {
@@ -174,7 +162,7 @@ function triangulate(clickPosition) {
     indices = Delaunay.triangulate(vertices);
 }
 
-function shatterAnimation(clickPosition) {
+function shatterAnimation(clickPosition,side) {
     var p0, p1, p2, fragment;
     var tl0 = new TimelineMax({ });
 
@@ -206,11 +194,19 @@ function shatterAnimation(clickPosition) {
         tl0.insert(tl1, delay);
 
         fragments.push(fragment);
+        if(side == "left"){
         document.querySelector("#dropl").appendChild(fragment.canvas);
+        }
+        else{
+            document.querySelector("#dropr").appendChild(fragment.canvas);
+        }
     }
-
+    if(side == "left"){
     document.querySelector("#dropl").removeChild(document.querySelector('.myCardClass'));
-
+}
+else{
+    document.querySelector("#dropr").removeChild(fragment.canvas);
+}
 }
 
 
@@ -277,7 +273,7 @@ Fragment.prototype = {
         this.ctx.lineTo(this.v2[0], this.v2[1]);
         this.ctx.closePath();
         this.ctx.clip();
-        var image = document.querySelector(".myCardClass svg"); // Corrected selector
+        var image = document.querySelector("#dropl svg"); // Corrected selector
 
     
         if (image instanceof SVGElement) { //check if an svg
@@ -305,20 +301,7 @@ Fragment.prototype = {
             // console.log(url)
             img.src = url;
 
-        } else if (image instanceof HTMLImageElement ||
-            image instanceof HTMLCanvasElement ||
-            image instanceof HTMLVideoElement ||
-            image instanceof OffscreenCanvas ||
-            image instanceof ImageBitmap) {
-       
-            this.ctx.drawImage(image, 0, 0,imageWidth, imageHeight); // part that actually shows the image
-
-        } else {
-            // Handle unsupported image types
-
-            console.error("Unsupported image type:", typeof image);
         }
-
 
     }
 };
