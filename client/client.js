@@ -260,6 +260,16 @@ function calculateHigher(card1, card2){
         document.getElementById("V").classList.add("vright")
     }, 1000); 
     }
+    else {
+        document.getElementById("V").classList.add("new-position")
+       
+        setTimeout(function() {
+        document.getElementById("V").textContent = "draw"
+        document.getElementById("V").style.fontStretch = "expanded"
+    }, 600); 
+        
+    
+    }
 }
 socket.on("errorDialogue", (data) => {
     document.querySelector("#error").classList.remove("hidden")

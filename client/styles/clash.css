@@ -302,14 +302,21 @@ progress::-webkit-progress-bar {
   transition: all 1s;
 }
 
+.vequal {
+
+}
+
 /* V ELEMENT NEW POSITION + ANIMATION AFTER S FALLS */
 .new-position {
+
+  font-size: 50px !important;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(0deg); /* Center the element and set initial rotation */
-  animation: spin 0.1s 10;
-  transition: top 10s ease, left 10s ease; 
+  
+  animation: spin 0.08s 20;
+  transition: top 40s ease, left 40s ease; 
 }
 
 
