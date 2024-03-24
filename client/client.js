@@ -241,7 +241,7 @@ function goToClashPhase() {
             }, 1000)
         }
     },500)
-    setTimeout(nextRound, 3000)
+    setTimeout(nextRound, 6000)
   }
 
 function calculateHigher(card1, card2){
@@ -249,9 +249,15 @@ function calculateHigher(card1, card2){
     card2 =  parseInt((card2).replace((card2).at(-1), ""));
     if(card1 > card2) {
         damageP2((card1 + card2)/2)
+        setTimeout(function() {
+        document.getElementById("V").classList.add("vleft")
+    },  1000); 
     }
     else if(card2 > card1){
         damageP1((card2 + card1)/2)
+        setTimeout(function() {
+        document.getElementById("V").classList.add("vright")
+    }, 1000); 
     }
     else {
         document.getElementById("V").classList.add("new-position")
@@ -259,11 +265,10 @@ function calculateHigher(card1, card2){
         setTimeout(function() {
         document.getElementById("V").textContent = "draw"
         document.getElementById("V").style.fontStretch = "expanded"
-    }, 600); 
-        
-    
-    }
+    }, 600);
 }
+}
+
 socket.on("errorDialogue", (data) => {
     document.querySelector("#error").classList.remove("hidden")
     document.querySelector(".error-header").innerHTML = data.text;

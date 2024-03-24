@@ -176,7 +176,7 @@ function triangulate(clickPosition) {
 
 function shatterAnimation(clickPosition) {
     var p0, p1, p2, fragment;
-    var tl0 = new TimelineMax({ onComplete: shatterCompleteHandler });
+    var tl0 = new TimelineMax({ });
 
     for (var i = 0; i < indices.length; i += 3) {
         p0 = vertices[indices[i + 0]];
@@ -206,25 +206,14 @@ function shatterAnimation(clickPosition) {
         tl0.insert(tl1, delay);
 
         fragments.push(fragment);
-        document.querySelector(".myCardClass").appendChild(fragment.canvas);
+        document.querySelector("#dropl").appendChild(fragment.canvas);
     }
 
-    document.querySelector(".myCardClass").removeChild( document.querySelectorAll('.myCardClass svg')[imageIndex]);
+    document.querySelector("#dropl").removeChild(document.querySelector('.myCardClass'));
 
 }
 
-function shatterCompleteHandler() {
-    setTimeout(function () {
-        fragments.forEach(function (f) {
-            document.querySelector(".myCardClass").removeChild(f.canvas);
-        });
-        fragments.length = 0;
-        vertices.length = 0;
-        indices.length = 0;
 
-        placeImage();
-    }, 10000);
-}
 
 function randomRange(min, max) {
     return min + (max - min) * Math.random();
@@ -290,7 +279,7 @@ Fragment.prototype = {
         this.ctx.clip();
         var image = document.querySelector(".myCardClass svg"); // Corrected selector
 
-        console.log(image)
+    
         if (image instanceof SVGElement) { //check if an svg
             // Convert SVG to data URL
 
@@ -299,7 +288,7 @@ Fragment.prototype = {
             var tempSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg"); //make a replica
 
 
-            console.log(svgString)
+
             tempSvg.innerHTML = svgString;  // copy into tempSvg
             cardStyleShatter(tempSvg,document.querySelector("#dropl").classList.value); //get the card style and change tempSvg svg contents to it
             var modifiedSvgString = new XMLSerializer().serializeToString(tempSvg);
@@ -321,9 +310,7 @@ Fragment.prototype = {
             image instanceof HTMLVideoElement ||
             image instanceof OffscreenCanvas ||
             image instanceof ImageBitmap) {
-            // Draw other supported image types directly onto the canvas
-            console.log(img)
-
+       
             this.ctx.drawImage(image, 0, 0,imageWidth, imageHeight); // part that actually shows the image
 
         } else {

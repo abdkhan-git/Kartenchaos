@@ -51,8 +51,8 @@ function placeCard(i) {
         cardDiv.classList.add('myCardClass'); //access the div
         cardDiv.appendChild(cards[i].children[0])
         cardDiv.style.borderRadius = '10px';
-        cardDiv.style.width = "149.38px";
-        cardDiv.style.height = "209.38px";
+        cardDiv.style.width = "150px";
+        cardDiv.style.height = "210px";
         cardDiv.style.display= 'flex'
         cardDiv.style.justifyContent= 'center'
         
