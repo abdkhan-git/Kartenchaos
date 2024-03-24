@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem("cardstyle")) {
         updateCardStyle(localStorage.getItem("cardstyle"))
     }
+    else {
+        updateCardStyle("default")
+    }
     const savedMusicOption = parseInt(localStorage.getItem("musicOption"));
     const options = document.querySelectorAll('.menu li');
     if (savedMusicOption) {

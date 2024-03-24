@@ -208,24 +208,9 @@ function loadCustomBgs() {
         </div>`;
     }
 
-
     const uploadDiv = document.querySelector(".bg-custom-upload-container")
     bgOptions.innerHTML += uploadDiv.outerHTML
     bgOptions.querySelector(".bg-custom-upload-container").classList.remove("hidden")
-    // let bgCustomOptions = document.querySelectorAll(".bg-custom")
-    // bgDelete = document.querySelectorAll(".delete-bg")
-    // for(let i = 0; i < bgCustomOptions.length; i++) {
-    //     bgDelete[i].addEventListener("click", () => {
-    //         console.log(custombgs)
-    //         custombgs.splice(i, 1);
-    //         console.log(custombgs)
-    //         localStorage.setItem("custombgs", custombgs.join("\n"))
-    //         if (localStorage.getItem("background") === "custombg-" + i) {
-    //             updateBg("bg-1")
-    //         }
-    //         loadCustomBgs()
-    //     })
-    // }
 }
 
 function deleteBg(i) {
@@ -241,7 +226,6 @@ function deleteBg(i) {
 }
 
 function updateBg(bg){
-    // console.log("herro")
     backgroundDiv.classList = bg;
     rulesBg.classList = bg;
     settingsBg.classList = bg;
@@ -253,16 +237,12 @@ function updateCustomBg(bg, index, event){
     if(document.querySelectorAll(".delete-bg")[index].contains(event.target)){
         return;
     }
-    // console.log("herro")
-    backgroundDiv.classList = bg + "-" + index;
-    rulesBg.classList = bg + "-" + index;
-    settingsBg.classList = bg + "-" + index;
-    errorDiv.classList = bg + "-" + index;
-    localStorage.setItem("background", bg + "-"+ index);
+    updateBg(bg + "-" + index);
 }
 
 function updateCardStyle(style) {
     document.querySelector("#p1handcontainer").classList = style
     document.querySelector("#dropl").classList = style
     localStorage.setItem("cardstyle", style);
+    updateCardStyleForAll(getRoomIDFromURL(), style)
 }
