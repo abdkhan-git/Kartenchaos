@@ -256,8 +256,6 @@ html {
 
 #p1handcontainer .card, #p2handcontainer .card{
     height: fit-content;
-    border-radius: 10px;
-    background: white;
     display: flex;
     justify-content: center;
     align-items: center;

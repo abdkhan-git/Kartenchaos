@@ -333,4 +333,4 @@ function updateCardStyle(style) {
 }
 document.querySelector(".settings-main-phase").addEventListener("click", ()=> {
     settingsDiv.classList.remove("hidden")
-})
+});
