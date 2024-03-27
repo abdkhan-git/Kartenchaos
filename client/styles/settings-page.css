@@ -329,7 +329,7 @@
   width: 25%;
 }
 
-.reset-btn, .save-btn {
+.reset-btn, .save-btn, .general-reset-btn {
   display: block;
   font-family: 'myFirstFont';
   font-size: 60px;
@@ -590,4 +590,8 @@ input[type="file"] {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0,0,0,0.5);
+}
+
+.selected-option {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 1);
 }

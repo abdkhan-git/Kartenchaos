@@ -38,7 +38,20 @@
 <audio id="music" controls autoplay hidden loop>
     <source src="/Audio/Default.mp3" type="audio/mp3">
 </audio>
-<audio autoplay class="voiceover" id="voiceover" src="/Audio/click.mp3"></audio>
+
+
+<audio autoplay id="voiceover">
+    <source src="/Audio/click.mp3"
+    type="audio/mp3">
+</audio>
+
+
+<audio autoplay id="menu-select">
+    <source src="/Audio/menu-select.mp3"
+    type="audio/mp3">
+</audio>
+
+
 <div class="bg-0" id="bg"></div>
 <div class="home-ui">
     <div class="header">
@@ -126,7 +139,7 @@
                 <div class="bottom-content">
                     <div></div>
                     <div class="bottom-right-side">
-                        <button class="reset-btn">RESET</button>
+                        <button class="general-reset-btn">RESET</button>
                         <button class="save-btn">SAVE</button>
                     </div>
                 </div>
@@ -141,7 +154,7 @@
                     <div class="music-volume-option">
                         <div class="music-volume">Music Volume</div>
                         <input type="range" class="music-slider range-style">
-                        <input type="number" class="sfx-input slider-input" value="50" placeholder="50">
+                        <input type="number" class="music-input slider-input" value="50" placeholder="50">
                     </div>
                     <div class="sfx-volume-option">
                         <div class="sfx-volume">SFX Volume</div>
@@ -159,7 +172,7 @@
                             </div>
                             <ul class="menu">
                                 <li>None</li>
-                                <li>Default</li>
+                                <li class="default-sound">Default</li>
                                 <li>Alone</li>
                                 <li>Turn Down for What</li>
                                 <li>Gangnam Style</li>
@@ -183,11 +196,11 @@
         <div class="p2-damage-indicator-container"><h1 class="p2-damage-taken hidden">-10</h1></p></div>
     </div>
     <div id="p2handcontainer" class="default">
-        <div class="opp-card" draggable="true"></div>
-        <div class="opp-card" draggable="true"></div>
-        <div class="opp-card" draggable="true"></div>
-        <div class="opp-card" draggable="true"></div>
-        <div class="opp-card" draggable="true"></div>
+        <div class="opp-card"></div>
+        <div class="opp-card"></div>
+        <div class="opp-card"></div>
+        <div class="opp-card"></div>
+        <div class="opp-card"></div>
     </div>
     <div class="dropport" id=drop_port>
         <div class="default" id="dropl"></div>
@@ -240,8 +253,10 @@
 <script src="/client/scripts/settings-page.js" defer></script>
 <script src="/client/scripts/rules-page.js" defer></script>
 <script src="/client/scripts/onload.js" defer></script>
+<script src="/client/scripts/hover-sound.js"></script>
 <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/delaunay.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenMax.min.js"></script>
+
 
 </body>
 </html>

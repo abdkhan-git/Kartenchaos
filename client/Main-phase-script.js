@@ -116,3 +116,57 @@ function goHome(){
     document.querySelector("#Main-phase").style.display = "none"
     history.pushState({}, '',window.location.origin)
 }
+
+// Remove the 'selected' class from all options
+function deselectAllOptions() {
+    const bgOptions = document.querySelectorAll('.bg-option');
+    const cardStyleOptions = document.querySelectorAll('.card-style-option');
+
+    bgOptions.forEach(option => option.classList.remove('selected'));
+    cardStyleOptions.forEach(option => option.classList.remove('selected'));
+}
+
+function updateBg(bg) {
+    deselectAllOptions();
+
+    const selectedOption = document.querySelector(`.bg-option.${bg}`);
+    if (selectedOption) {
+        selectedOption.classList.add('selected');
+    }
+
+    backgroundDiv.classList = bg;
+    rulesBg.classList = bg;
+    settingsBg.classList = bg;
+    localStorage.setItem("background", bg);
+}
+
+function updateCustomBg(bg, index, event) {
+    if (document.querySelectorAll(".delete-bg")[index].contains(event.target)) {
+        return;
+    }
+
+    deselectAllOptions();
+
+    const selectedOption = document.querySelector(`.bg-option.${bg}-${index}`);
+    if (selectedOption) {
+        selectedOption.classList.add('selected');
+    }
+
+    backgroundDiv.classList = `${bg}-${index}`;
+    rulesBg.classList = `${bg}-${index}`;
+    settingsBg.classList = `${bg}-${index}`;
+    localStorage.setItem("background", `${bg}-${index}`);
+}
+
+function updateCardStyle(style) {
+    deselectAllOptions();
+
+    const selectedOption = document.querySelector(`.card-style-option.${style}`);
+    if (selectedOption) {
+        selectedOption.classList.add('selected');
+    }
+
+    document.querySelector("#p1handcontainer").classList = style;
+    document.querySelector("#dropl").classList = style;
+    localStorage.setItem("cardstyle", style);
+}
