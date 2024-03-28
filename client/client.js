@@ -262,7 +262,6 @@ function calculateHigher(card1, card2){
         setTimeout(function() {
             document.getElementById("V").classList.add("vright")
             document.getElementById("V").classList.remove("new-position")
-
         }, 1000);
     }
     else {

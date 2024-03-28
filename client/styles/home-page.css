@@ -100,28 +100,33 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 50vh;
-    width: 45%;
-    padding: 20px;
+    height: 50vh; /* Adjust height as needed */
+    width: 45%; /* Occupy 45% of the viewport width */
+    padding: 20px; /* Add some padding for spacing */
     scale: 50%;
 }
 
 .home-pictures.left {
+    /*left: 0; !* Position the container on the left side *!*/
     transform: rotate(-10deg)
 }
 
 .home-pictures.right {
+    /*right: 0; !* Position the container on the right side *!*/
     transform: rotate(10deg)
 }
 
 .home-ui {
     display: flex;
     flex-direction: column;
+    flex-direction: column;
+    /* gap: 250px; */
     height: 100%;
     width: 100%;
     justify-content: space-around;
     align-items: center;
     position: fixed;
+    /*z-index: -1;*/
 }
 
 #title-of-game {
@@ -171,8 +176,11 @@ html {
     color: #333;
 }
 
+
+/* Home screen button select, ANIMATED BUTTON + ANIMATED ICON */
 .home-screen-buttons img {
     visibility: hidden;
+    width: 40px;
     transform: rotate(-0.25turn);
     width: 40px;
     display: inline-flex;
@@ -194,16 +202,52 @@ html {
 
     0% {
         transform: translateX(20px) rotate(-0.25turn);
+        /*margin-left: 15px;*/
     }
 
     50% {
         transform: translateX(5px) rotate(-0.25turn);
+        /*margin-left: 0px;*/
     }
     100% {
         transform: translateX(20px) rotate(-0.25turn);
+        /*margin-left: 0px;*/
     }
 
 }
+
+/* Home screen button select, NO ANIMATED BUTTON + ANIMATED ICON */
+
+/* .home-screen-buttons img {
+    visibility: hidden;
+    width: 40px;
+
+}
+.home-screen-buttons button:hover img{
+    visibility: visible;
+    transform: rotate(-0.25turn);
+    width: 40px;
+    display:inline-flex;
+    align-items: center;
+    position: relative;
+    animation-name: slideleft;
+    animation-duration: 1.1s;
+    /* border: solid black;
+    background-color: white;
+}
+
+@keyframes slideleft {
+
+    0%{
+        transform: translate(50px,0px)rotate(-0.25turn);
+    }
+
+    100%{
+        transform: translate(0px,0px)rotate(-0.25turn);
+    }
+
+
+} */
 
 @keyframes bg-animate {
     0% {
@@ -307,7 +351,9 @@ html {
 
 .dropport {
     display: flex;
+    height: 30%;
     top: 45%;
+    background-color: white;
     width: 550px;
     border-style: double;
     border-color: #767676;
@@ -345,6 +391,23 @@ html {
 }
 
 
+.wait {
+    margin: auto;
+    height: 50vh;
+    width: 50vh;
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 5vh;
+
+
+}
+
+.joker-img {
+    max-width: 200px;
+    max-height: 200px;
+}
+
 .heightcheck img {
     height: 30vh;
 }
@@ -354,9 +417,84 @@ html {
     height: 20vh;
 }
 
+.showcode {
+    background-color: greenyellow;
+    height: 20vh;
+    width: 40vh;
+    color: white;
+    font-size: larger;
+}
+
+
+
+
 .button-container {
     display: flex;
     gap: 1rem;
+    margin-top: 2rem;
+}
+
+.wait-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.wait-phase button {
+    display: block;
+    font-family: 'myFirstFont';
+    font-size: 5em;
+    color: black;
+    font-weight: 800;
+    text-decoration: none;
+    background: none;
+    transition: 0.4s;
+    border: none;
+    text-transform: uppercase;
+    max-width: fit-content;
+    cursor: pointer;
+    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+    padding-left: 57px;
+}
+
+.wait-phase button:hover {
+    color: #333;
+}
+
+.wait-phase button img {
+    visibility: hidden;
+    width: 40px;
+    transform: rotate(-0.25turn);
+    width: 40px;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    border: solid black;
+    background-color: white;
+    border-radius: 10%;
+}
+
+.wait-phase button:hover img {
+    visibility: visible;
+    animation-name: slideleft;
+    animation-duration: 1.1s;
+    animation-iteration-count: infinite;
+}
+
+.wait-phase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.wait-phase .wait {
+    margin-bottom: 2rem;
+}
+
+.wait-phase .p1handcontainer {
     margin-top: 2rem;
 }
 
