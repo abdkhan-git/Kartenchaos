@@ -16,10 +16,13 @@ loadPlayerHP(p2Hp);
 const p1Attack = document.querySelector('.p1-attack');
 const p2Attack = document.querySelector('.p2-attack');
 var dmg = 10;
-
+const startHealthp1 = 30;
+const startHealthp2 = 30;
 function damageP2(damage){
     p2Hp.value = attackEnemy(p2Hp.value, damage);
+    document.querySelector(".hpvalp2").innerText = p2Hp.value;
     displayDamageTaken(p2DamageIndicatorContainer, p2DamageTaken, p2Hp, 'right', damage);
+   
     if(p2Hp.value === 0){
         winScreen()
     }
@@ -28,7 +31,9 @@ function damageP2(damage){
 function damageP1(damage){
     p1Hp.value = attackEnemy(p1Hp.value, damage);
     console.log(p1Hp.value)
+    document.querySelector(".hpvalp1").innerText= p1Hp.value;
     displayDamageTaken(p1DamageIndicatorContainer, p1DamageTaken, p1Hp, 'left', damage);
+
     if(p1Hp.value === 0){
         loseScreen()
     }
@@ -80,7 +85,7 @@ function displayDamageTaken(damageIndicatorContainer, damageTaken, hp, direction
     if(hp.value === 100) {
         return;
     }
-
+   
     setTimeout(function() {
         damageTaken.classList.remove('hidden');
         damageIndicatorContainer.style.animation = 'fallingDown 0.7s linear forwards';
@@ -179,7 +184,7 @@ function shatterAnimation(clickPosition,side) {
         document.querySelector("#dropl").appendChild(fragment.canvas);
         }
         else{
-            console.log("chose dropright appendcanv")
+          
             document.querySelector("#dropr").appendChild(fragment.canvas);
         }
     }
@@ -187,7 +192,7 @@ function shatterAnimation(clickPosition,side) {
     document.querySelector("#dropl").removeChild(document.querySelector('.myCardClass'));
 }
 else{
-    console.log("chose dropright rem0ve")
+   
     document.querySelector("#dropr").removeChild(document.querySelector('.card4'));
 }
 }
@@ -260,7 +265,7 @@ Fragment.prototype = {
             var image = document.querySelector("#dropl svg"); // Corrected selector
         }
         else {
-            console.log("chose dropright svg")
+           
             var image = document.querySelector("#dropr svg");
         }
 

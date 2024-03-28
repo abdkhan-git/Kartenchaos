@@ -1,0 +1,140 @@
+
+#clash-page {
+  position: relative;
+}
+
+.p1-pfp {
+  display: inline-block;
+  border: solid black;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: white;
+  margin: 80px 0px 0px 80px;
+}
+
+
+.p2-pfp {
+  display: inline-block;
+  border: solid black;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  float: right;
+  text-align: center;
+  background-color: white;
+  margin: 80px 80px 0px 0px;
+}
+
+.p1-pfp img, .p2-pfp img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.p1-pfp img {
+  transform: scaleX(-1);
+}
+
+.battle {
+  /* border: solid brown; */
+  display: flex;
+  position: relative;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  gap: 55%
+}
+
+.p1-card, .p2-card {
+  display: flex;
+  border: solid red;
+  background-color: rgba(79, 77, 77, 0.558);
+  height: 427px;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0px, -30%);
+  color: white;
+  font-weight: bold;
+  font-size: 50px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.p1-card {
+  top: 0;
+  left: calc(50% - 400px); /* Adjust the value based on card width and desired gap */
+}
+
+.p2-card {
+  top: 0;
+  right: calc(50% - 400px); /* Adjust the value based on card width and desired gap */
+}
+
+.p1-attack, .p2-attack {
+  width: 100px;
+  height: 50px;
+  background-color: rgba(1, 4, 104, 0.733);
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+}
+
+.p1-attack:hover, .p2-attack:hover {
+  background-color: black;
+  width: 100%;
+  height: 85%;
+  transition: ease-in 0.5s;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: var(--progress-color);
+  transition: background-color 1s ease;
+}
+
+progress::-webkit-progress-bar {
+  background: transparent;
+  border: solid black;
+}
+
+#p1-health-bar, #p2-health-bar {
+  width: 100%;
+  height: 100%;
+  /* border: solid black; */
+  border-radius: 5px;
+  
+}
+
+#p2-health-bar, .bar2 {
+  transform: scaleX(-1);
+}
+
+.bar1, .bar2 {
+  width: 400px;
+  height: 50%;
+  /* border: solid black; */
+  border-radius: 5px;
+}
+
+.vs-img-container {
+  display: flex;
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  top: 0;
+  right: calc(50% - 125px);
+  justify-content: center;
+  align-items: center;
+}
+
+.vs-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}

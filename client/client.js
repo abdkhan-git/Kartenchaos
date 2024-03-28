@@ -63,7 +63,7 @@ function showNotification(message) {
     notification.style.display = 'block';
     setTimeout(function() {
         notification.style.display = 'none';
-    }, 3000); // Hide notification after 3 seconds
+    }, 3000);
 }
 
 function joinGame() {
@@ -252,6 +252,7 @@ function calculateHigher(card1, card2){
         damageP2((card1 + card2)/2)
         setTimeout(function() {
         document.getElementById("V").classList.add("vleft")
+
         shatter("right")
     },  1000); 
     }

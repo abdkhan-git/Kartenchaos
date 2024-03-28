@@ -324,57 +324,15 @@ html {
     height: 210px;
 }
 
-#p1handcontainer .card{
-    /*position: absolute;*/
-    width: fit-content;
+#p1handcontainer .card, #p2handcontainer .card{
     height: fit-content;
-    border-radius: 10px;
-    background: white;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: 0.5s;
     transform-origin: 50% 100%;
-    border-radius: 13px;
-    transform: rotate(calc(var(--i) * 15deg)) translate(calc((var(--i)) * 70px), -40px);
-    border-radius: 10px;
     width: 150px;
-    /*margin-left: 10px;*/
-}
-
-#p2handcontainer .card {
-    /*position: absolute;*/
-    width: fit-content;
-    height: fit-content;
-    border-radius: 10px;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.5s;
-    transform-origin: 50% 100%;
-    border-radius: 13px;
-    transform: rotate(calc(var(--i) * 15deg)) translate(calc((var(--i)) * 70px), -40px);
-    border-radius: 10px;
-    width: 150px;
-    /*margin-left: 10px;*/
-}
-
-.p1handcontainer .card img {
-    width: 12vw;
-    height: 90%;
-}
-
-
-.p1handcontainer:hover .card:nth-child(3) {
-    transform: rotate(2deg) translate(calc((var(--i)) * 50px), -40px);
-}
-
-.p1handcontainer .card:hover {
-    translate: calc(var(--i) * 20px) -50px;
-    margin-bottom: 0%;
 }
 
 .notification {

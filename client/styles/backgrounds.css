@@ -59,3 +59,19 @@
     animation-iteration-count: infinite;
     animation-play-state: running;
 }
+
+
+.bg-3{
+    background-color: #1488df !important;
+    background-image: url("../Images/classy-fabric.png");
+    background-repeat: repeat;
+    height: 1000vh;
+    width: 1000vw;
+    z-index: -1000;
+    position: fixed;
+    animation-name: bg-animate;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}

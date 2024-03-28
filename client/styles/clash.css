@@ -65,6 +65,7 @@ progress[value]::-webkit-progress-value {
   transition: background-color 1s ease;
   transition: 1s ease;
   border-radius: 10px;
+  
 }
 
 progress::-webkit-progress-bar {
@@ -418,6 +419,22 @@ body {
   overflow: hidden;
 }
 
+.hpvalp1 {
+  color: white;
+  font-size: 50px;
+  z-index: 2;
+  position: relative; /* Adding relative positioning */
+  display: flex;
+  left: 5%;
+}
+
+.hpvalp2 {
+  color: white;
+  font-size: 50px;
+  z-index: 2;
+  position: relative; /* Adding relative positioning */
+  top: 20px; /* Adjust as needed to move the element down */
+}
 
 .piece {
   position: absolute;
